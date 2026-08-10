@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌸 تعلم معي</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffe6f0, #dff5ff, #fff4c2);
+    text-align: center;
+    color: #6a2850;
+}
+
+.app {
+    padding: 25px 15px;
+}
+
+h1 {
+    font-size: 34px;
+    color: #ff4f91;
+}
+
+p {
+    font-size: 20px;
+    color: #6b5b73;
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+.main-button {
+    display: block;
+    width: 90%;
+    max-width: 350px;
+    margin: 18px auto;
+    padding: 20px;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.letters-btn {
+    background: #ff80ab;
+}
+
+.words-btn {
+    background: #5ec8ff;
+}
+
+.games-btn {
+    background: #9b7cff;
+}
+
+.back {
+    background: #ffcc66;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 14px 28px;
+    margin: 20px;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.card {
+    background: white;
+    border-radius: 25px;
+    padding: 25px;
+    margin: 20px auto;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+}
+
+.letter {
+    font-size: 90px;
+    font-weight: bold;
+    color: #ff4f91;
+}
+
+.word {
+    font-size: 28px;
+    margin: 15px;
+}
+
+.listen {
+    background: #ff80ab;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.letter-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 15px;
+}
+
+.letter-list button {
+    border: none;
+    border-radius: 18px;
+    padding: 16px 5px;
+    font-size: 18px;
+    background: white;
+    box-shadow: 0 4px 10px #ddd;
+}
+
+.words-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 15px;
+}
+
+.words-list button {
+    border: none;
+    border-radius: 20px;
+    padding: 18px 8px;
+    font-size: 20px;
+    background: white;
+    box-shadow: 0 4px 10px #ddd;
+}
+
+.game {
+    background: white;
+    margin: 20px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 450px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px #ddd;
+}
+
+.game button {
+    background: #ff9f43;
+    border: none;
+    padding: 14px 22px;
+    margin: 6px;
+    border-radius: 15px;
+    font-size: 19px;
+    color: white;
+}
+
+.result {
+    font-size: 21px;
+    margin-top: 15px;
+    font-weight: bold;
+    min-height: 30px;
+}
+
+.small-title {
+    color: #ff7b54;
+    font-size: 28px;
+}
+
+.home-icon {
+    font-size: 45px;
+}
+</style>
+
+<meta name="theme-color" content="#ff80ab">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- ================= الرئيسية ================= -->
+
+<div id="home" class="screen active">
+
+    <div class="home-icon">🌸</div>
+
+    <h1>🌸 تعلم معي 🌸</h1>
+
+    <p>مرحباً يا صديقي! 👋</p>
+
+    <p>هيا نتعلم اللغة بطريقة ممتعة 🎈</p>
+
+    <button class="main-button letters-btn"
+            onclick="showScreen('letters')">
+        🔤 الحروف
+    </button>
+
+    <button class="main-button words-btn"
+            onclick="showScreen('words')">
+        🐶 الكلمات
+    </button>
+
+    <button class="main-button games-btn"
+            onclick="showScreen('games')">
+        🎮 الألعاب
+    </button>
+
+</div>
+
+
+<!-- ================= الحروف ================= -->
+
+<div id="letters" class="screen">
+
+    <h1>🌸 تعلم الحروف 🌸</h1>
+
+    <div class="card">
+
+        <div id="bigLetter" class="letter">A</div>
+
+        <div id="bigWord" class="word">🍎 Apple</div>
+
+        <button class="listen" onclick="speakCurrentLetter()">
+            🔊 اسمع
+        </button>
+
+    </div>
+
+    <h2>اختاري حرفاً:</h2>
+
+    <div class="letter-list">
+
+        <button onclick="selectLetter('A','🍎 Apple')">A 🍎 Apple</button>
+        <button onclick="selectLetter('B','🐝 Bee')">B 🐝 Bee</button>
+        <button onclick="selectLetter('C','🐱 Cat')">C 🐱 Cat</button>
+        <button onclick="selectLetter('D','🐶 Dog')">D 🐶 Dog</button>
+        <button onclick="selectLetter('E','🐘 Elephant')">E 🐘 Elephant</button>
+        <button onclick="selectLetter('F','🐟 Fish')">F 🐟 Fish</button>
+        <button onclick="selectLetter('G','🦒 Giraffe')">G 🦒 Giraffe</button>
+        <button onclick="selectLetter('H','🏠 House')">H 🏠 House</button>
+        <button onclick="selectLetter('I','🍦 Ice cream')">I 🍦 Ice cream</button>
+        <button onclick="selectLetter('J','🧃 Juice')">J 🧃 Juice</button>
+        <button onclick="selectLetter('K','🦘 Kangaroo')">K 🦘 Kangaroo</button>
+        <button onclick="selectLetter('L','🦁 Lion')">L 🦁 Lion</button>
+        <button onclick="selectLetter('M','🐒 Monkey')">M 🐒 Monkey</button>
+        <button onclick="selectLetter('N','🪺 Nest')">N 🪺 Nest</button>
+        <button onclick="selectLetter('O','🍊 Orange')">O 🍊 Orange</button>
+        <button onclick="selectLetter('P','🐼 Panda')">P 🐼 Panda</button>
+        <button onclick="selectLetter('Q','👑 Queen')">Q 👑 Queen</button>
+        <button onclick="selectLetter('R','🐰 Rabbit')">R 🐰 Rabbit</button>
+        <button onclick="selectLetter('S','☀️ Sun')">S ☀️ Sun</button>
+        <button onclick="selectLetter('T','🐯 Tiger')">T 🐯 Tiger</button>
+        <button onclick="selectLetter('U','☂️ Umbrella')">U ☂️ Umbrella</button>
+        <button onclick="selectLetter('V','🎻 Violin')">V 🎻 Violin</button>
+        <button onclick="selectLetter('W','🐳 Whale')">W 🐳 Whale</button>
+        <button onclick="selectLetter('X','🎹 Xylophone')">X 🎹 Xylophone</button>
+        <button onclick="selectLetter('Y','🛥️ Yacht')">Y 🛥️ Yacht</button>
+        <button onclick="selectLetter('Z','🦓 Zebra')">Z 🦓 Zebra</button>
+
+    </div>
+
+    <button class="back" onclick="showScreen('home')">
+        🏠 الرئيسية
+    </button>
+
+</div>
+
+
+<!-- ================= الكلمات ================= -->
+
+<div id="words" class="screen">
+
+    <h1 class="small-title">🐶 الكلمات</h1>
+
+    <div class="words-list">
+
+        <button onclick="speak('Dog')">
+            🐶 Dog<br>كلب
+        </button>
+
+        <button onclick="speak('Cat')">
+            🐱 Cat<br>قطة
+        </button>
+
+        <button onclick="speak('Apple')">
+            🍎 Apple<br>تفاحة
+        </button>
+
+        <button onclick="speak('Milk')">
+            🥛 Milk<br>حليب
+        </button>
+
+        <button onclick="speak('Book')">
+            📚 Book<br>كتاب
+        </button>
+
+        <button onclick="speak('Ball')">
+            ⚽ Ball<br>كرة
+        </button>
+
+        <button onclick="speak('Car')">
+            🚗 Car<br>سيارة
+        </button>
+
+        <button onclick="speak('House')">
+            🏠 House<br>منزل
+        </button>
+
+        <button onclick="speak('Sun')">
+            ☀️ Sun<br>شمس
+        </button>
+
+        <button onclick="speak('Water')">
+            💧 Water<br>ماء
+        </button>
+
+    </div>
+
+    <button class="back" onclick="showScreen('home')">
+        🏠 الرئيسية
+    </button>
+
+</div>
+
+
+<!-- ================= الألعاب ================= -->
+
+<div id="games" class="screen">
+
+    <h1>🎮 ألعاب تعليمية</h1>
+
+    <div class="game">
+
+        <h2>🔤 لعبة الحروف</h2>
+
+        <p>اضغطي على الحرف الصحيح:</p>
+
+        <h1 id="gameLetter">A</h1>
+
+        <button onclick="checkAnswer('A')">A</button>
+        <button onclick="checkAnswer('B')">B</button>
+        <button onclick="checkAnswer('C')">C</button>
+
+        <div id="letterResult" class="result"></div>
+
+    </div>
+
+
+    <div class="game">
+
+        <h2>🐶 لعبة الكلمات</h2>
+
+        <p>اختاري الكلمة الصحيحة:</p>
+
+        <h2>🐶</h2>
+
+        <button onclick="wordAnswer('Dog')">Dog</button>
+        <button onclick="wordAnswer('Cat')">Cat</button>
+        <button onclick="wordAnswer('Fish')">Fish</button>
+
+        <div id="wordResult" class="result"></div>
+
+    </div>
+
+    <button class="back" onclick="showScreen('home')">
+        🏠 الرئيسية
+    </button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ================= التنقل بين الصفحات ================= */
+
+function showScreen(screenName) {
+
+    const screens = document.querySelectorAll(".screen");
+
+    screens.forEach(function(screen) {
+        screen.classList.remove("active");
+    });
+
+    document.getElementById(screenName).classList.add("active");
+
+    window.scrollTo(0, 0);
+}
+
+
+/* ================= نطق الكلمات ================= */
+
+function speak(word) {
+
+    if (!("speechSynthesis" in window)) {
+        alert("خاصية الصوت غير متاحة في هذا الجهاز.");
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const voice = new SpeechSynthesisUtterance(word);
+
+    voice.lang = "en-US";
+    voice.rate = 0.8;
+    voice.pitch = 1;
+
+    speechSynthesis.speak(voice);
+}
+
+
+/* ================= اختيار الحرف ================= */
+
+let currentLetter = "A";
+let currentWord = "Apple";
+
+function selectLetter(letter, word) {
+
+    currentLetter = letter;
+    currentWord = word;
+
+    document.getElementById("bigLetter").textContent = letter;
+    document.getElementById("bigWord").textContent = word;
+}
+
+
+/* ================= نطق الحرف ================= */
+
+function speakCurrentLetter() {
+
+    speak(currentLetter + ", " + currentWord.replace(/[^\w\s]/g, ""));
+}
+
+
+/* ================= لعبة الحروف ================= */
+
+function checkAnswer(answer) {
+
+    const result = document.getElementById("letterResult");
+
+    if (answer === "A") {
+
+        result.innerHTML = "🎉 أحسنتِ!";
+
+        speak("Excellent!");
+
+    } else {
+
+        result.innerHTML = "❌ حاولي مرة أخرى";
+
+        speak("Try again");
+
+    }
+}
+
+
+/* ================= لعبة الكلمات ================= */
+
+function wordAnswer(answer) {
+
+    const result = document.getElementById("wordResult");
+
+    if (answer === "Dog") {
+
+        result.innerHTML = "🎉 ممتاز!";
+
+        speak("Excellent!");
+
+    } else {
+
+        result.innerHTML = "❌ حاولي مرة أخرى";
+
+        speak("Try again");
+
+    }
+}
+
+</script>
+
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+  });
+}
+</script>
+
+</body>
+</html>
